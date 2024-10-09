@@ -5,6 +5,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Global } from '@emotion/react'
 import globalStyles from '@styles/globalStyles'
+// @ts-ignore
 import { AlertContextProvider } from '@contexts/AlertContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
