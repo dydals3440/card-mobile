@@ -1,12 +1,13 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 import Text from '@shared/Text'
 import Button from '@shared/Button'
 import Input from '@shared/Input'
 import TextField from '@shared/TextField'
+import { useAlertContext } from '@contexts/AlertContext'
 
 function App() {
+  const { open } = useAlertContext()
   return (
     <div>
       <Text typography="t1" display="block" color="red">
@@ -31,6 +32,24 @@ function App() {
       <Input aria-invalid={true} />
       <TextField label="아이디" />
       <TextField label="Password" />
+      {/*<Alert*/}
+      {/*  buttonLabel={'hi'}*/}
+      {/*  title="알림이 뜸"*/}
+      {/*  description="hihi"*/}
+      {/*  onButtonClick={() => {}}*/}
+      {/*/>*/}
+      <Button
+        onClick={() => {
+          open({
+            title: '카드 신청완료',
+            description: '내역 페이지에서 확인해주세요.',
+            buttonLabel: 'hi',
+            onButtonClick: () => {},
+          })
+        }}
+      >
+        Alert오픈
+      </Button>
     </div>
   )
 }

@@ -2,6 +2,10 @@ import { css } from '@emotion/react'
 import { colorPalette } from './colorPalette'
 
 export default css`
+  :root {
+    --dimmed-zindex: 10;
+    --alert-zindex: 11;
+  }
   ${colorPalette}
   html,
   body,
