@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import Text from '@shared/Text'
 import Button from '@shared/Button'
+import Input from '@shared/Input'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         클릭해주세요
       </Button>
       <Button full>클릭해주세요</Button>
+      <Input placeholder="로그인" />
+      <Input aria-invalid={true} />
     </div>
   )
 }
