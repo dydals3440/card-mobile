@@ -4,6 +4,7 @@ import './App.css'
 import Text from '@shared/Text'
 import Button from '@shared/Button'
 import Input from '@shared/Input'
+import TextField from '@shared/TextField'
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
       <Button full>클릭해주세요</Button>
       <Input placeholder="로그인" />
       <Input aria-invalid={true} />
+      <TextField label="아이디" />
+      <TextField label="Password" />
     </div>
   )
 }
