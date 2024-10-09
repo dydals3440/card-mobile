@@ -133,12 +133,10 @@ export default css`
     content: '';
     content: none;
   }
-
   table {
     border-collapse: collapse;
     border-spacing: 0;
   }
-
   button {
     border: none;
     margin: 0;
@@ -149,5 +147,9 @@ export default css`
     color: inherit;
     font: inherit;
     line-height: normal;
+  }
+  a {
+    color: inherit;
+    text-decoration: inherit;
   }
 `

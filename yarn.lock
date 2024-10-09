@@ -3460,6 +3460,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.59.4":
+  version: 5.59.4
+  resolution: "@tanstack/query-core@npm:5.59.4"
+  checksum: 10/176a1133378241ae62ee40252e5261c2c4119c49ee84e2063ac8634fd431c10616b6055d24850c8392ff43c6d56119a915210c284970b26b63759dced7873528
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.59.4":
+  version: 5.59.4
+  resolution: "@tanstack/react-query@npm:5.59.4"
+  dependencies:
+    "@tanstack/query-core": "npm:5.59.4"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10/62e36081b7e7c8d4bd7e8a8d2014570e35f78c4aa54279828f3696f5da810db7476a01a4a24ce63c24935284f514e9a4a9ae992a96c6a549f0cbe1ff37f2c451
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^8.5.0":
   version: 8.20.1
   resolution: "@testing-library/dom@npm:8.20.1"
@@ -10894,6 +10912,7 @@ __metadata:
     "@emotion/css": "npm:^11.13.4"
     "@emotion/react": "npm:^11.13.3"
     "@emotion/styled": "npm:^11.13.0"
+    "@tanstack/react-query": "npm:^5.59.4"
     "@testing-library/jest-dom": "npm:^5.14.1"
     "@testing-library/react": "npm:^13.0.0"
     "@testing-library/user-event": "npm:^13.2.1"
@@ -10913,6 +10932,7 @@ __metadata:
     react-dom: "npm:^18.3.1"
     react-router-dom: "npm:^6.26.2"
     react-scripts: "npm:5.0.1"
+    swiper: "npm:9"
     typescript: "npm:^4.4.2"
     web-vitals: "npm:^2.1.0"
   languageName: unknown
@@ -13237,6 +13257,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ssr-window@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "ssr-window@npm:4.0.2"
+  checksum: 10/075b67794be868103d73299be948cd559be7b40499fe4247c7a28702f9f1588c53ca8de64520ae8e36214caa6ff728b222101d7e75d5df39e7ff12e148d6a517
+  languageName: node
+  linkType: hard
+
 "ssri@npm:^10.0.0":
   version: 10.0.6
   resolution: "ssri@npm:10.0.6"
@@ -13649,6 +13676,15 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: 10/2b74544da1a9521852fe2784252d6083b336e32528d0e424ee54d1613f17312edc7020c29fa399086560e96cba42ede4a2205328a08edeefa26de84cd769a64a
+  languageName: node
+  linkType: hard
+
+"swiper@npm:9":
+  version: 9.4.1
+  resolution: "swiper@npm:9.4.1"
+  dependencies:
+    ssr-window: "npm:^4.0.2"
+  checksum: 10/900db2e4d9a812ada9c4261cc5cba335bd137e98211b5a072c64b71d0d4df213933ccd9da62e4719a3547d51d3d50d1247afe2aa6fe00bfa525de4e3c1e4c33f
   languageName: node
   linkType: hard
 
