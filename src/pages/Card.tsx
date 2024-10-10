@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { getCard } from '@remote/card'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 import Top from '@shared/Top'
 import ListRow from '@shared/ListRow'
@@ -9,9 +10,17 @@ import FixedBottomButton from '@shared/FixedBottomButton'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import { css } from '@emotion/react'
+import { useCallback } from 'react'
+import useUser from '@hooks/auth/useUser'
+import { useAlertContext } from '@contexts/AlertContext'
 
 function CardPage() {
   const { id = '' } = useParams()
+  const user = useUser()
+  const { open } = useAlertContext()
+
+  const navigate = useNavigate()
+
   const { data } = useQuery({
     queryKey: ['card', id],
     queryFn: () => getCard(id),
@@ -19,6 +28,22 @@ function CardPage() {
     // id가 빈값이 아니면 호출하겠다는 의미.
     enabled: id !== '',
   })
+
+  const moveToApply = useCallback(() => {
+    if (user == null) {
+      open({
+        buttonLabel: '확인',
+        title: '로그인이 필요한 기능입니다.',
+        onButtonClick: () => {
+          navigate('/signin')
+        },
+      })
+
+      return
+    }
+
+    navigate(`/apply/${id}`)
+  }, [user, id, open, navigate])
 
   if (data == null) {
     return null
@@ -28,13 +53,11 @@ function CardPage() {
 
   const subTitle =
     promotion != null ? removeHtmlTags(promotion.title) : tags.join(', ')
-  console.log(benefit)
   return (
     <div>
       <Top title={`${corpName} ${name}`} subTitle={subTitle} />
       <ul>
         {benefit.map((text, index) => {
-          console.log(text)
           return (
             <motion.li
               initial={{ opacity: 0, translateX: -90 }}
@@ -64,7 +87,7 @@ function CardPage() {
           <Text typography="t7">{removeHtmlTags(promotion.terms)}</Text>
         </Flex>
       ) : null}
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton label="신청하기" onClick={moveToApply} />
     </div>
   )
 }

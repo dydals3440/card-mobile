@@ -1,12 +1,14 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
 import { auth, store } from '@remote/firebase'
+import { useNavigate } from 'react-router-dom'
 
 import Form from '@components/signup/Form'
 import { FormValues } from '@models/signup'
 import { COLLECTIONS } from '@/constants'
 
 function SignupPage() {
+  const navigate = useNavigate()
   // 완성도니 결과물을 부모한테 넘김.
   const handleSubmit = async (formValues: FormValues) => {
     console.log(formValues)
@@ -34,7 +36,8 @@ function SignupPage() {
     // setDoc을 통해 문서 저장
     await setDoc(doc(collection(store, COLLECTIONS.USER), user.uid), newUser)
 
-    // TODO: 로그인
+    // 회원가입 잘 완료하면, 홈으로.
+    navigate('/')
   }
   return <Form onSubmit={handleSubmit} />
 }

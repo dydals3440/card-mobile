@@ -12,8 +12,6 @@ function AuthGuard({ children }: PropsWithChildren) {
   const setUser = useSetRecoilState(userAtom)
 
   onAuthStateChanged(auth, (user) => {
-    console.log('user', user)
-
     if (user != null) {
       setUser({
         uid: user.uid,

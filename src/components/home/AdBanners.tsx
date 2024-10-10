@@ -4,7 +4,7 @@ import Text from '@shared/Text'
 import { css } from '@emotion/react'
 import { colors } from '@styles/colorPalette'
 import { Link } from 'react-router-dom'
-import { useQuery, useInfiniteQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getAdBanners } from '@remote/adBanner'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -14,7 +14,6 @@ function AdBanners() {
     queryFn: getAdBanners,
     queryKey: ['adBanners'],
   })
-  console.log(data)
   return (
     <Container>
       <Swiper spaceBetween={8}>
