@@ -7,6 +7,7 @@ import { FormValues } from '@models/signup'
 import { COLLECTIONS } from '@/constants'
 
 function SignupPage() {
+  // 완성도니 결과물을 부모한테 넘김.
   const handleSubmit = async (formValues: FormValues) => {
     console.log(formValues)
     const { email, password, name } = formValues

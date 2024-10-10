@@ -8,6 +8,7 @@ import globalStyles from '@styles/globalStyles'
 // @ts-ignore
 import { AlertContextProvider } from '@contexts/AlertContext'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import AuthGuard from '@components/auth/AuthGuard'
 
 const client = new QueryClient({
   defaultOptions: {},
@@ -19,7 +20,9 @@ root.render(
     <Global styles={globalStyles} />
     <QueryClientProvider client={client}>
       <AlertContextProvider>
-        <App />
+        <AuthGuard>
+          <App />
+        </AuthGuard>
       </AlertContextProvider>
     </QueryClientProvider>
   </React.StrictMode>,
