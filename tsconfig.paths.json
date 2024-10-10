@@ -12,7 +12,7 @@
       "@remote/*": ["src/remote/*"],
       "@constants": ["src/constants/index"],
       "@constants/*": ["src/constants/*"],
-      "@atoms/*": ["src/constants/*"],
+      "@atoms/*": ["src/atoms/*"],
       "@hooks/*": ["src/hooks/*"]
     }
   }

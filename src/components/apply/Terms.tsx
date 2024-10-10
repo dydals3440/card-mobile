@@ -3,8 +3,10 @@ import Agreement from '@shared/Agreement'
 import FixedBottomButton from '@shared/FixedBottomButton'
 
 import { 약관목록 } from '@constants/apply'
+import { ApplyValues } from '@models/apply'
 
-function Terms({ onNext }: { onNext: (terms: string[]) => void }) {
+// Pick으로 뽑으면 객체가 나옴, string[]이니 아래와같이 ApplyValues['terms']
+function Terms({ onNext }: { onNext: (terms: ApplyValues['terms']) => void }) {
   const [termsAgreements, setTermsAgreements] = useState(() => {
     return 약관목록.reduce<Record<string, boolean>>(
       (prev, term) => ({

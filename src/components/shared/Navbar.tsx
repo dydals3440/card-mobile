@@ -6,8 +6,8 @@ import { colors } from '@styles/colorPalette'
 import Flex from '@shared/Flex'
 import Button from '@shared/Button'
 import { useCallback } from 'react'
-import useUser from '@hooks/auth/useUser'
 import { auth } from '@remote/firebase'
+import useUser from '@hooks/auth/useUser'
 
 function Navbar() {
   const location = useLocation()
