@@ -1,15 +1,29 @@
 // 인증처리
 import { PropsWithChildren, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 
 // firebase의 인증상태가 변경되면 인식하는 것.
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '@remote/firebase'
+import { userAtom } from '@/atoms/user'
 
 function AuthGuard({ children }: PropsWithChildren) {
   const [initialize, setInitialize] = useState(false)
+  const setUser = useSetRecoilState(userAtom)
 
   onAuthStateChanged(auth, (user) => {
     console.log('user', user)
+
+    if (user != null) {
+      setUser({
+        uid: user.uid,
+        email: user.email ?? '',
+        displayName: user.displayName ?? '',
+      })
+    } else {
+      // 로그인 된 상태가 아닌 경우.
+      setUser(null)
+    }
     setInitialize(true)
   })
 
