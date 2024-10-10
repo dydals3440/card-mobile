@@ -43,6 +43,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:16.18.113"],\
           ["@types/react", "npm:18.3.11"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/validator", "npm:13.12.2"],\
           ["craco-alias", "npm:3.0.1"],\
           ["eslint", "npm:8.57.1"],\
           ["eslint-config-prettier", "virtual:150264159473de5ad3d609c3d588131dba04597fc50d2bdbfb116498641e1e6ef86fea22e55cfcdd57a3c11c269416a4e51b17e65777452f1b56eb2f4e5c79b6#npm:9.1.0"],\
@@ -60,6 +61,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:150264159473de5ad3d609c3d588131dba04597fc50d2bdbfb116498641e1e6ef86fea22e55cfcdd57a3c11c269416a4e51b17e65777452f1b56eb2f4e5c79b6#npm:5.0.1"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["validator", "npm:13.12.0"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
         "linkType": "SOFT"\
@@ -6769,6 +6771,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-trusted-types-npm-2.0.7-a07fc44f59-8e4202766a.zip/node_modules/@types/trusted-types/",\
         "packageDependencies": [\
           ["@types/trusted-types", "npm:2.0.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/validator", [\
+      ["npm:13.12.2", {\
+        "packageLocation": "./.yarn/cache/@types-validator-npm-13.12.2-c7c4fd2a77-564f60cfe1.zip/node_modules/@types/validator/",\
+        "packageDependencies": [\
+          ["@types/validator", "npm:13.12.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -15137,6 +15148,7 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:16.18.113"],\
           ["@types/react", "npm:18.3.11"],\
           ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/validator", "npm:13.12.2"],\
           ["craco-alias", "npm:3.0.1"],\
           ["eslint", "npm:8.57.1"],\
           ["eslint-config-prettier", "virtual:150264159473de5ad3d609c3d588131dba04597fc50d2bdbfb116498641e1e6ef86fea22e55cfcdd57a3c11c269416a4e51b17e65777452f1b56eb2f4e5c79b6#npm:9.1.0"],\
@@ -15154,6 +15166,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:150264159473de5ad3d609c3d588131dba04597fc50d2bdbfb116498641e1e6ef86fea22e55cfcdd57a3c11c269416a4e51b17e65777452f1b56eb2f4e5c79b6#npm:5.0.1"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["validator", "npm:13.12.0"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
         "linkType": "SOFT"\
@@ -19891,6 +19904,15 @@ const RAW_RUNTIME_STATE =
           ["@types/istanbul-lib-coverage", "npm:2.0.6"],\
           ["convert-source-map", "npm:1.9.0"],\
           ["source-map", "npm:0.7.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["validator", [\
+      ["npm:13.12.0", {\
+        "packageLocation": "./.yarn/cache/validator-npm-13.12.0-6c8a423cbf-db6eb0725e.zip/node_modules/validator/",\
+        "packageDependencies": [\
+          ["validator", "npm:13.12.0"]\
         ],\
         "linkType": "HARD"\
       }]\
