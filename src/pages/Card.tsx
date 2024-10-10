@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { getCard } from '@remote/card'
+import { motion } from 'framer-motion'
 
 import Top from '@shared/Top'
 import ListRow from '@shared/ListRow'
@@ -35,13 +36,25 @@ function CardPage() {
         {benefit.map((text, index) => {
           console.log(text)
           return (
-            <ListRow
-              left={<IconCheck />}
-              key={text}
-              contents={
-                <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={text} />
-              }
-            />
+            <motion.li
+              initial={{ opacity: 0, translateX: -90 }}
+              whileInView={{ opacity: 1, translateX: 0 }}
+              // animate={{ opacity: 1, translateX: 0 }}
+              transition={{
+                duration: 1.5,
+                ease: [0.25, 0.1, 0.25, 0.1],
+                delay: index * 0.1,
+              }}
+            >
+              <ListRow
+                as="div"
+                left={<IconCheck />}
+                key={text}
+                contents={
+                  <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={text} />
+                }
+              />
+            </motion.li>
           )
         })}
       </ul>
