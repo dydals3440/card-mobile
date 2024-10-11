@@ -7,6 +7,10 @@ import {
   buttonWeakMap,
   buttonSizeMap,
 } from '@styles/button'
+import React from 'react'
+import Flex from '@shared/Flex'
+import Text from '@shared/Text'
+import Spacing from '@shared/Spacing'
 
 interface ButtonProps {
   color?: ButtonColor
@@ -17,7 +21,7 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const Button = styled.button<ButtonProps>(
+const BaseButton = styled.button<ButtonProps>(
   {
     cursor: 'pointer',
     fontWeight: 'bold',
@@ -43,5 +47,49 @@ const Button = styled.button<ButtonProps>(
         `
       : undefined,
 )
+
+function ButtonGroup({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <Flex direction="column">
+      {title != null ? (
+        <>
+          <Text typography="t6" bold>
+            {title}
+          </Text>
+          <Spacing size={8} />
+        </>
+      ) : null}
+      <Flex css={buttonGroupStyle}>{children}</Flex>
+    </Flex>
+  )
+}
+
+const buttonGroupStyle = css`
+  // 버튼의 간격
+  flex-wrap: wrap;
+  gap: 10px;
+
+  & button {
+    flex: 1;
+  }
+`
+
+// 컴포넌트 확장방법
+// 버튼은 BaseButton의 모든 타입을 사용할 수 있음.
+const Button = BaseButton as typeof BaseButton & {
+  Group: typeof ButtonGroup
+}
+
+Button.Group = ButtonGroup
+
+// <Button.ButtonGroup>
+//   <Button></Button>
+// </Button.ButtonGroup>
 
 export default Button

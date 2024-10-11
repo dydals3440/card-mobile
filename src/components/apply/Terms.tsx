@@ -17,7 +17,12 @@ function Terms({ onNext }: { onNext: (terms: ApplyValues['terms']) => void }) {
     )
   })
 
-  console.log(termsAgreements)
+  //   {
+  //     id: '01',
+  //     title: '카드신청 관련 안내 및 필수 동의',
+  //     link: 'url'
+  //   },
+  console.log(termsAgreements, '텀')
 
   // ecery를 통해 모두 동의했는지 체크
   const 모든약관이_동의되었는가 = Object.values(termsAgreements).every(
@@ -69,7 +74,7 @@ function Terms({ onNext }: { onNext: (terms: ApplyValues['terms']) => void }) {
       </Agreement>
       <FixedBottomButton
         label="약관동의"
-        disabled={모든약관이_동의되었는가 === false}
+        disabled={!모든약관이_동의되었는가}
         onClick={() => {
           // 내가 동의한 약관들의 key만 뺴옴.
           onNext(Object.keys(termsAgreements))

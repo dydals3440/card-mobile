@@ -3,7 +3,7 @@ import { User } from '@models/user'
 export interface Term {
   id: string
   link?: string
-  title?: string
+  title: string
 }
 
 export interface ApplyValues {
@@ -14,6 +14,9 @@ export interface ApplyValues {
   salary: string
   creditScore: string
   payDate: string
+  isMaster: boolean
+  isHipass: boolean
+  isRf: boolean
 }
 
 export interface Option {
