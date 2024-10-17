@@ -10,10 +10,22 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 
 function AdBanners() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: getAdBanners,
     queryKey: ['adBanners'],
   })
+
+  if (data == null || isLoading) {
+    return (
+      <Container>
+        <Flex direction="column" css={bannerContainerStyles}>
+          <Text bold={true}>&nbsp;</Text>
+          <Text typography="t7">&nbsp;</Text>
+        </Flex>
+      </Container>
+    )
+  }
+
   return (
     <Container>
       <Swiper spaceBetween={8}>

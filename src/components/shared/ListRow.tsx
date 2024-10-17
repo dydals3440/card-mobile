@@ -3,6 +3,8 @@ import { css } from '@emotion/react'
 import React from 'react'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
+import Skeleton from '@shared/Skeleton'
+import Spacing from '@shared/Spacing'
 
 interface ListRowProps {
   left?: React.ReactNode
@@ -46,13 +48,33 @@ function ListRowTexts({
   title,
   subTitle,
 }: {
-  title: string
-  subTitle?: string
+  title: React.ReactNode
+  subTitle?: React.ReactNode
 }) {
   return (
     <Flex direction="column">
       <Text bold>{title}</Text>
       <Text typography="t7">{subTitle}</Text>
+    </Flex>
+  )
+}
+
+function ListRowSekeleton() {
+  return (
+    <Flex as={'li'} css={listRowContainerStyles} align="center">
+      <Flex css={listRowLeftStyles}></Flex>
+      <Flex css={listRowContentsStyles}>
+        <ListRow.Texts
+          title={
+            <>
+              <Skeleton width={67} height={23} />
+              <Spacing size={2} />
+            </>
+          }
+          subTitle={<Skeleton width={85} height={20} />}
+        />
+      </Flex>
+      <IconArrowRight />
     </Flex>
   )
 }
@@ -73,5 +95,6 @@ function IconArrowRight() {
 
 // 함수도 객체이니 컴포넌트를 넣어줄 수 있음.
 ListRow.Texts = ListRowTexts
+ListRow.Skeleton = ListRowSekeleton
 
 export default ListRow

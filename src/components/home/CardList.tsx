@@ -36,19 +36,20 @@ function CardList() {
 
     fetchNextPage()
   }, [fetchNextPage, hasNextPage, isFetching])
-
   if (data == null) {
     return null
   }
 
   const cards = flatten(data?.pages.map(({ items }) => items))
 
+  console.log(cards)
+
   return (
     <div>
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
-        loader={<div>Loading...</div>}
+        loader={<ListRow.Skeleton />}
         next={loadMore}
         scrollThreshold="100px"
       >
