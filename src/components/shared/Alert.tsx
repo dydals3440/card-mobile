@@ -1,11 +1,11 @@
+import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
-import React from 'react'
-import Dimmed from '@shared/Dimmed'
-import { colors } from '@styles/colorPalette'
-import Text from '@shared/Text'
 
-import Flex from '@shared/Flex'
-import Button from '@shared/Button'
+import Text from './Text'
+import Dimmed from './Dimmed'
+import Flex from './Flex'
+import Button from './Button'
+import React from 'react'
 
 interface AlertProps {
   open?: boolean
@@ -18,9 +18,9 @@ interface AlertProps {
 function Alert({
   open,
   title,
-  buttonLabel,
-  onButtonClick,
   description,
+  buttonLabel = '확인',
+  onButtonClick,
 }: AlertProps) {
   if (open === false) {
     return null
@@ -29,14 +29,19 @@ function Alert({
   return (
     <Dimmed>
       <AlertContainer>
-        <Text typography="t4" bold display="block" style={{ marginBottom: 6 }}>
+        <Text
+          typography="t4"
+          bold={true}
+          display="block"
+          style={{ marginBottom: 6 }}
+        >
           {title}
         </Text>
         {description ? <Text typography="t7">{description}</Text> : null}
         <Flex justify="flex-end">
           <Button
             onClick={onButtonClick}
-            weak
+            weak={true}
             style={{ marginTop: 12, border: 'none' }}
           >
             {buttonLabel}
@@ -51,7 +56,6 @@ const AlertContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-  // 자기의 50만큼만 가져오게함.
   transform: translate(-50%, -50%);
   background-color: ${colors.white};
   border-radius: 8px;

@@ -1,16 +1,16 @@
-import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import { getCard } from '@remote/card'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { css } from '@emotion/react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useCallback } from 'react'
 
 import Top from '@shared/Top'
 import ListRow from '@shared/ListRow'
+import { getCard } from '@remote/card'
 import FixedBottomButton from '@shared/FixedBottomButton'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
-import { css } from '@emotion/react'
-import { useCallback } from 'react'
+import Spacing from '@shared/Spacing'
 import useUser from '@hooks/auth/useUser'
 import { useAlertContext } from '@contexts/AlertContext'
 
@@ -21,21 +21,16 @@ function CardPage() {
 
   const navigate = useNavigate()
 
-  const { data } = useQuery({
-    queryKey: ['card', id],
-    queryFn: () => getCard(id),
-    // id가 없을 수 있으니.
-    // id가 빈값이 아니면 호출하겠다는 의미.
+  const { data } = useQuery(['card', id], () => getCard(id), {
     enabled: id !== '',
   })
 
   const moveToApply = useCallback(() => {
     if (user == null) {
       open({
-        buttonLabel: '확인',
         title: '로그인이 필요한 기능입니다.',
         onButtonClick: () => {
-          navigate('/signin')
+          navigate(`/signin`)
         },
       })
 
@@ -53,26 +48,33 @@ function CardPage() {
 
   const subTitle =
     promotion != null ? removeHtmlTags(promotion.title) : tags.join(', ')
+
   return (
     <div>
       <Top title={`${corpName} ${name}`} subTitle={subTitle} />
+
       <ul>
         {benefit.map((text, index) => {
           return (
             <motion.li
-              initial={{ opacity: 0, translateX: -90 }}
-              whileInView={{ opacity: 1, translateX: 0 }}
-              // animate={{ opacity: 1, translateX: 0 }}
+              initial={{
+                opacity: 0,
+                translateX: -90,
+              }}
               transition={{
-                duration: 1.5,
-                ease: [0.25, 0.1, 0.25, 0.1],
+                duration: 0.7,
+                ease: 'easeInOut',
                 delay: index * 0.1,
+              }}
+              animate={{
+                opacity: 1,
+                translateX: 0,
               }}
             >
               <ListRow
                 as="div"
-                left={<IconCheck />}
                 key={text}
+                left={<IconCheck />}
                 contents={
                   <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={text} />
                 }
@@ -81,54 +83,61 @@ function CardPage() {
           )
         })}
       </ul>
+
       {promotion != null ? (
         <Flex direction="column" css={termsContainerStyles}>
           <Text bold={true}>유의사항</Text>
           <Text typography="t7">{removeHtmlTags(promotion.terms)}</Text>
         </Flex>
       ) : null}
-      <FixedBottomButton label="신청하기" onClick={moveToApply} />
+
+      <Spacing size={1000} />
+
+      <Spacing size={100} />
+
+      <FixedBottomButton
+        label="1분만에 신청하고 혜택받기"
+        onClick={moveToApply}
+      />
     </div>
   )
-}
-
-function removeHtmlTags(text: string) {
-  let output = ''
-  for (let i = 0; i < text.length; i++) {
-    if (text[i] === '<') {
-      for (let j = i + 1; j < text.length; j += 1) {
-        if (text[j] === '>') {
-          i = j
-          break
-        }
-      }
-    } else {
-      output += text[i]
-    }
-  }
-  return output
 }
 
 function IconCheck() {
   return (
     <svg
-      fill="blue"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
+      fill="none"
+      height="20"
+      viewBox="0 0 48 48"
+      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <rect fill="white" fill-opacity="0.01" height="48" width="48" />
       <path
-        d="M12,23 C5.92486775,23 1,18.0751322 1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M10,13.5857864 L15.2928932,8.29289322 L16.7071068,9.70710678 L10,16.4142136 L6.29289322,12.7071068 L7.70710678,11.2928932 L10,13.5857864 Z"
-        fill-rule="evenodd"
+        d="M24 44C29.5228 44 34.5228 41.7614 38.1421 38.1421C41.7614 34.5228 44 29.5228 44 24C44 18.4772 41.7614 13.4772 38.1421 9.85786C34.5228 6.23858 29.5228 4 24 4C18.4772 4 13.4772 6.23858 9.85786 9.85786C6.23858 13.4772 4 18.4772 4 24C4 29.5228 6.23858 34.5228 9.85786 38.1421C13.4772 41.7614 18.4772 44 24 44Z"
+        fill="#2F88FF"
+        stroke="black"
+        stroke-linejoin="round"
+        stroke-width="4"
+      />
+      <path
+        d="M16 24L22 30L34 18"
+        stroke="white"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="4"
       />
     </svg>
   )
 }
 
+function removeHtmlTags(text: string) {
+  return text.replace(/<\/?[^>]+(>|$)/g, '')
+}
+
 const termsContainerStyles = css`
   margin-top: 80px;
-  padding: 0 24px 80px;
+  padding: 0 24px 80px 24px;
 `
 
 export default CardPage

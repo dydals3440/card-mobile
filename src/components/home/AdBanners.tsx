@@ -4,7 +4,7 @@ import Text from '@shared/Text'
 import { css } from '@emotion/react'
 import { colors } from '@styles/colorPalette'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from 'react-query'
 import { getAdBanners } from '@remote/adBanner'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -22,7 +22,7 @@ function AdBanners() {
             <SwiperSlide key={banner.id}>
               <Link to={banner.link}>
                 <Flex direction="column" css={bannerContainerStyles}>
-                  <Text bold>{banner.title}</Text>
+                  <Text bold={true}>{banner.title}</Text>
                   <Text typography="t7">{banner.description}</Text>
                 </Flex>
               </Link>

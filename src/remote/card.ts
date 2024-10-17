@@ -32,7 +32,7 @@ import { Card } from '@models/card'
 async function getCards(pageParam?: QuerySnapshot<Card>) {
   const cardQuery =
     pageParam == null
-      ? query(collection(store, COLLECTIONS.CARD), limit(20))
+      ? query(collection(store, COLLECTIONS.CARD), limit(10))
       : query(
           collection(store, COLLECTIONS.CARD),
           startAfter(pageParam),

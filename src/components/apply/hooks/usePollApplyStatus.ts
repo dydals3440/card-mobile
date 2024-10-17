@@ -1,22 +1,33 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from 'react-query'
 
 import { APPLY_STATUS } from '@models/apply'
 
 interface usePollApplyStatusProps {
+  onSuccess: () => void
+  onError: () => void
   enabled: boolean
 }
 
-function usePollApplyStatus({ enabled }: usePollApplyStatusProps) {
-  return useQuery({
-    queryKey: ['applyStatus'],
-    queryFn: getApplyStatus,
-    enabled: enabled,
+function usePollApplyStatus({
+  enabled,
+  onSuccess,
+  onError,
+}: usePollApplyStatusProps) {
+  return useQuery(['applyStatus'], () => getApplyStatus(), {
+    enabled,
     refetchInterval: 2_000,
     staleTime: 0,
+    onSuccess: (status) => {
+      console.log('status', status)
+      if (status === APPLY_STATUS.COMPLETE) {
+        onSuccess()
+      }
+    },
+    onError: () => {
+      onError()
+    },
   })
 }
-
-export default usePollApplyStatus
 
 function getApplyStatus() {
   const values = [
@@ -34,3 +45,5 @@ function getApplyStatus() {
 
   return status
 }
+
+export default usePollApplyStatus

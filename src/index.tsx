@@ -5,11 +5,10 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Global } from '@emotion/react'
 import globalStyles from '@styles/globalStyles'
-// @ts-ignore
 import { AlertContextProvider } from '@contexts/AlertContext'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AuthGuard from '@components/auth/AuthGuard'
 import { RecoilRoot } from 'recoil'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const client = new QueryClient({
   defaultOptions: {},
