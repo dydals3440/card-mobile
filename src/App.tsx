@@ -26,6 +26,7 @@ function App() {
           path="/apply/:id"
           element={
             <PrivateRoute>
+              {/* 데이터를 다 호출한 다음에, 보여줌. */}
               <Suspense fallback={<></>}>
                 <ApplyPage />
               </Suspense>

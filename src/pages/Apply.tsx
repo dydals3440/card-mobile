@@ -1,19 +1,27 @@
-import Apply from '@components/apply'
 import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+
+import Apply from '@components/apply'
+import useApplyCardMutation from '@components/apply/hooks/useApplyCardMutation'
 import usePollApplyStatus from '@components/apply/hooks/usePollApplyStatus'
 import { updateApplyCard } from '@remote/apply'
-import useUser from '@hooks/auth/useUser'
-import { useParams, useNavigate } from 'react-router-dom'
 import { APPLY_STATUS } from '@models/apply'
+import useUser from '@hooks/auth/useUser'
 import useAppliedCard from '@components/apply/hooks/useAppliedCard'
-import useApplyCardMutation from '@components/apply/hooks/useApplyCardMutation'
 import { useAlertContext } from '@contexts/AlertContext'
+import FullPageLoader from '@shared/FullPageLoader'
+
+const STATUS_MESSAGE = {
+  [APPLY_STATUS.READY]: '카드 심사를 준비하고있습니다.',
+  [APPLY_STATUS.PROGRESS]: '카드를 심사중입니다. 잠시만 기다려주세요.',
+  [APPLY_STATUS.COMPLETE]: '카드 신청이 완료되었습니다.',
+}
 
 function ApplyPage() {
   const navigate = useNavigate()
-  // 폴링을 위한 플래그
-  const [readyToPoll, setReadyToPoll] = useState(false)
   const { open } = useAlertContext()
+
+  const [readyToPoll, setReadyToPoll] = useState(false)
 
   const user = useUser()
   const { id } = useParams() as { id: string }
@@ -73,8 +81,6 @@ function ApplyPage() {
     enabled: readyToPoll,
   })
 
-  console.log(readyToPoll)
-
   const { mutate, isLoading: 카드를신청중인가 } = useApplyCardMutation({
     onSuccess: () => {
       setReadyToPoll(true)
@@ -88,12 +94,11 @@ function ApplyPage() {
     return null
   }
 
-  // polling or
   if (readyToPoll || 카드를신청중인가) {
-    return <div>Loading...</div>
+    return <FullPageLoader message={'카드를 신청중입니다.'} />
   }
 
-  // 데이터를 가져오는 쪽으로 관심사 분리
   return <Apply onSubmit={mutate} />
 }
+
 export default ApplyPage
