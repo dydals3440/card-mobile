@@ -95,7 +95,7 @@ function ApplyPage() {
   }
 
   if (readyToPoll || 카드를신청중인가) {
-    return <FullPageLoader message={'카드를 신청중입니다.'} />
+    return <FullPageLoader message={STATUS_MESSAGE[status ?? 'READY']} />
   }
 
   return <Apply onSubmit={mutate} />
