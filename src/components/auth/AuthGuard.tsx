@@ -17,6 +17,7 @@ function AuthGuard({ children }: PropsWithChildren) {
         uid: user.uid,
         email: user.email ?? '',
         displayName: user.displayName ?? '',
+        photoURL: user.photoURL ?? '',
       })
     } else {
       // 로그인 된 상태가 아닌 경우.

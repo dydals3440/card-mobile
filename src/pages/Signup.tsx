@@ -11,7 +11,6 @@ function SignupPage() {
   const navigate = useNavigate()
   // 완성도니 결과물을 부모한테 넘김.
   const handleSubmit = async (formValues: FormValues) => {
-    console.log(formValues)
     const { email, password, name } = formValues
     // 인증 유저를 만듬
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
@@ -19,6 +18,8 @@ function SignupPage() {
     await updateProfile(user, {
       displayName: name,
     })
+
+    console.log(name)
 
     // 패스워드는 위의 인증에서 처리
     // 아래는 가지고 사용하는 용도
